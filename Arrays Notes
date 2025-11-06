@@ -1,0 +1,172 @@
+import static java.lang.System.*;
+import java.util.*;
+
+public class FreeCode4CodingIg {
+	public static void main(String[] args) {
+		//i will make a shit ton of arrays here with different types
+
+		String[] monkTypes = {"Monkey", "MONKEY", "monkey", "Monkies", "MONKIES", "monkies"};//STRING ARRAY
+		int [] brainCells = {0, 1, 2, 3, 4, 5, 6};//INT ARRAY
+		double[] debt = {1.0, 2.0, 3.0, 4.0, 5.0, 6.7};//DOUBLE ARRAY
+		char[] monkSpell = {'M', 'O', 'N', 'K', 'E', 'Y'};//CHAR ARRAY(?)
+
+		//You can also do it like this, but u need a loop to fill. useful for like numbers going up
+
+		int[] blank67 = new int[67];
+
+		//fill this up like this
+
+		blank67[0] = 67;//start with 0
+		blank67[1] = 67;
+		blank67[2] = 67;
+		blank67[3] = 67;
+		blank67[4] = 67;//can go up until 66, since it starts at 0. 0-66 is 67 units
+
+		//you can loop through an array with a for loop. For a while loop, but all you need to do is implement a counter
+		//You can use a normal for loop or an ENHANCED for loop(also called a FOR-EACH LOOP)
+
+		/*
+		String[] monkTypes = {"Monkey", "MONKEY", "monkey", "Monkies", "MONKIES", "monkies"};//STRING ARRAY
+		int [] brainCells = {0, 1, 2, 3, 4, 5, 6};//INT ARRAY
+		double[] debt = {1.0, 2.0, 3.0, 4.0, 5.0, 6.7};//DOUBLE ARRAY
+		char[] monkSpell = {'M', 'O', 'N', 'K', 'E', 'Y'};//CHAR ARRAY(?)
+		 */		
+
+		for(int i = 0; i<monkTypes.length; i++) {//Arrays have a length method, but no () at the end like strings
+			out.println(monkTypes[i]);//NORMAL LOOP
+			/*
+			 If you for some reason us a <= in i<=monkTypes, then you WILL get an error which is bad
+			 I you want to make the array go backwards, you can just do this array opposite
+			 Make i=the array length, make it > 0, and i--
+			 */
+		}
+		out.println();//Spacer
+		//For-each now! Use normal loop though so u can use the i counter for other things. Use this for final return
+
+		for(String k:monkTypes) {//you need to make that k or whatever you use have the same data type as the array
+			out.println(k);//print k, not the array at k's index
+		}
+		out.println();//Spacer
+
+		/*
+		 Fun lecture time!
+		 So arrays are kind of like Strings in the sense that they are immutable(in a way).
+		 You CANNOT add or remove items in an array , but you can change them.
+		 You will get an out of bounds exception if you try to call an index not in the array(obviously)
+		 (I will show cool things to do with them at the bottom)
+		 */
+
+		//METHOD TIME
+		//You can use the split method to split the String on that thing you want split(splat??) 
+
+		String sentence = "The little brown monkey swang in the trees.";
+		String[] monkSplit = sentence.split(" ");//you can split on spaces
+
+		for(String k:monkSplit) {
+			out.print(k);
+		}
+		out.println();
+
+
+		String splitEX = "ballybellybillybollybully";
+		String[] llSPLIT = splitEX.split("ll");//u can also split on parts of a word
+
+		for(String k:llSPLIT) {
+			out.print(k);
+		}
+		out.println("\n");
+
+		//for testing only
+		int[] modeTest = {1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1, 9} ;
+		//for testing only
+
+		//METHOD CALLING ONLY
+
+		out.println(max(brainCells));
+		out.println(min(brainCells));
+		out.println(mode(modeTest));
+
+		//METHOD CALLING ONLY
+
+		//SEARCHING HELL
+		int[] searchList = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+		int lTarget = 6;
+		int bTarget = 7;
+
+		out.println(linearSearch(searchList, lTarget));
+		out.println(binarySearch(searchList, bTarget));
+
+		//SEARCHING HELL
+
+
+
+	}//PEAK METHODS TIME(YIPPEE ;D)
+	public static int max(int[] a) {//this finds the maximum of an array 
+		int max = a[0];//First index in the array. Important to make it the first one, or it will not check properly
+		for(int i = 0; i<a.length; i++) {
+			if(max<a[i]) {
+				max = a[i];
+			}
+		}
+		return max;
+	}
+	public static int min(int[] a) {//this finds the minimum of an array . basically the same as maximum
+		int min = a[0];//First index in the array. Important to make it the first one, or it will not check properly
+		for(int i = 0; i<a.length; i++) {
+			if(min>a[i]) {
+				min = a[i];
+			}
+		}
+		return min;
+	}
+	public static int mode(int list[])//I kind of gave up, but my initial idea was to sort that array, and use substring and index of to get all of the things. not very gud
+	{
+		int temp[] = new int[list.length];
+		for(int i=0; i<temp.length; i++)
+			temp[i] = list[i];
+		Arrays.sort(temp);
+		int modeNum = temp[0], currentNum = temp[0];
+		int modeLength = 1, currentLength = 1;
+		for(int i = 1; i<temp.length; i++)
+			if(currentNum != temp[i])
+			{
+				if(currentLength > modeLength)
+				{
+					modeLength = currentLength;
+					modeNum = currentNum;
+				}
+				currentLength = 1;
+				currentNum = temp[i];
+			}
+			else
+				currentLength++;
+		if(currentLength > modeLength)
+			modeNum = currentNum;
+		return modeNum;
+	}
+	public static int linearSearch(int[] a, int target) {
+		for(int i = 0; i<a.length;i++) {
+			if(target==a[i]) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	public static int binarySearch(int a[], int target)
+	{
+		int left = 0;
+		int right = a.length-1;
+		while(left <= right)
+		{
+			int middle = (left+right)/2;
+			if(a[middle]==target)
+				return middle;
+			else if(a[middle] < target)
+				left = middle+1;
+			else
+				right = middle-1;
+		}
+		return -1;
+	}
+}
+
