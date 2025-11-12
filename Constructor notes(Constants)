@@ -1,0 +1,5 @@
+public class Constants {
+	public static final int BLESSED_NUMBER = 67;
+	public static final String BLESSED_WORD = "Monkey";
+	private int six = 7;
+}
