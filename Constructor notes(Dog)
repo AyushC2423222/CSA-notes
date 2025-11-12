@@ -1,0 +1,20 @@
+import static java.lang.System.*;
+import java.util.*;
+public class Dog {
+	String name;//if u want to assign a name or age to da dog, you have to put it in the constructor
+	int age;
+	public Dog(String name) {//Constructor method. It is always named the class name, in this case Dog. They have NO return type, even Void
+		//You can do anything u want with this over here. U can name ur doggo and set its age to ur hearts content
+		this.name = name;//I am just assigning the name to Big Tayt for ALL of my dogs. I can have 1 or 365. Put in parameters.
+		//DO NOT name ur parameters the same as the variables, like parameter name and String name. You can only if you use This.name
+	}
+	//You can only have 1 of each type constructor total, unless they are multi-parameters
+	//You cant have String String, but you can have String, and String int.
+	public Dog(int age) {
+		this.age = age;
+	}
+	public Dog(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
+}
