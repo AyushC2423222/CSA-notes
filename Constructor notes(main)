@@ -1,0 +1,26 @@
+import static java.lang.System.*;
+import java.util.*;
+
+public class Constructors {
+	/*a constructor is a type of method used for making objects
+	an objects are instances of a class:
+	they basically are made in the class(constructors in this case) and can be used all around it
+	by using methods in dem constructors, you can modify and do stuff with these objects
+	As far as i understand, these constructor and objects are only useful for management of resources and stuff
+	*/
+	
+	//Constructors are the blueprint of the class. The objects are the things they make(?)
+	public static void main(String[] args) {
+		Dog nameDog = new Dog("Kewl Karthi");//WOW, i just made a dog object. It is based in the dog class
+		/*This dog object is empty, but it still has the same values from the Dog class (name and age). They are just empty*/
+		out.println(nameDog.name);//This prints out null cuz u dont care to name ur dog. U have to make a new constructor for that.
+		Dog ageDog = new Dog(67);
+		out.println(ageDog.age);
+		Dog Dog1 = new Dog("Big Tayt", 15);
+		out.println("I got a dog named "+Dog1.name+" and he is "+Dog1.age+" years old!");
+		/*if we try to make a new dog named emptyDog and try to use the default constructor with name null and age 0, we get an error
+		 This happens since we made a constructor, and we have to be responsible parents for our dogs now*/
+		out.println(Constants.BLESSED_WORD);
+		out.println(Constants.BLESSED_NUMBER);//no need to make new variables for these. U can just snatch them :)
+	}
+}
