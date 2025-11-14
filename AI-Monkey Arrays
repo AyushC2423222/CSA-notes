@@ -1,0 +1,521 @@
+import static java.lang.System.*;
+import java.util.*;
+import java.util.Arrays;
+
+public class MonkeyArrays {
+    public static void main(String[] args) {
+        out.println("🐒 WELCOME TO MONKEY ARRAY ACADEMY 🐒\n");
+        
+        // THE LEGENDARY 67 MINION-MONKEYS
+        String[] minionMonkeys = {
+            "Kevin", "Stuart", "Bob", "Dave", "Jerry", "Carl", "Phil", "Tim", "Mark", "Jorge",
+            "Paul", "Pierre", "Lance", "Norbert", "Mel", "Mike", "Ken", "John", "Larry", "Otto",
+            "Darwin", "Baker", "Donny", "Chris", "Benny", "Barry", "Steve", "Gary", "Frank", "Danny",
+            "Randy", "Ted", "Billy", "Walter", "Henry", "Tony", "Rick", "Fred", "Norman", "Charlie",
+            "Ron", "Arnold", "Justin", "Victor", "Ray", "Roger", "Harold", "Eugene", "Albert", "Stanley",
+            "Eddie", "Sam", "Joe", "Andy", "Peter", "Bruce", "Ralph", "Alex", "Dennis", "Jacob",
+            "Kyle", "Nathan", "Max", "Oscar", "Luke", "Mason", "Zack"
+        }; // ALL 67 MINION NAMES!
+        
+        // Basic arrays
+        int[] brainCells = {0, 1, 2, 3, 4, 5, 6}; 
+        double[] debt = {1.0, 2.0, 3.0, 4.0, 5.0, 6.7};
+        char[] monkSpell = {'M', 'O', 'N', 'K', 'E', 'Y'};
+        
+        // MINION MONKEY ROLL CALL
+        out.println("=== THE 67 LEGENDARY MINION-MONKEYS ===");
+        out.println("Total minion-monkeys: " + minionMonkeys.length);
+        out.println("First minion: " + minionMonkeys[0]);
+        out.println("Last minion: " + minionMonkeys[66]);
+        out.println("Lucky #67 minion (middle-ish): " + minionMonkeys[33] + "\n");
+        
+        // Print all 67 minions with their banana count
+        out.println("=== ALL 67 MINION-MONKEYS AND THEIR BANANAS ===");
+        for(int i = 0; i < minionMonkeys.length; i++) {
+            out.println(minionMonkeys[i] + " has " + (i + 1) + " bananas");
+        }
+        out.println();
+
+        int[] bananaHoard = new int[67];
+        
+        for(int i = 0; i < bananaHoard.length; i++) {
+            bananaHoard[i] = 67;
+        }
+        
+        out.println("=== MONKEY BANANA HOARD (all 67s) ===");
+        out.println("First monkey has: " + bananaHoard[0] + " bananas");
+        out.println("Last monkey has: " + bananaHoard[66] + " bananas");
+        out.println("Total monkeys with bananas: " + bananaHoard.length + "\n");
+
+        // MONKEY ROLL CALL using minionMonkeys
+        out.println("=== MONKEY ROLL CALL (Normal Loop) ===");
+        for(int i = 0; i < minionMonkeys.length; i++) {
+            out.println("Monkey #" + i + ": " + minionMonkeys[i]);
+        }
+        out.println();
+
+        // BACKWARDS MONKEY PARADE
+        out.println("=== CONFUSED MONKEYS GOING BACKWARDS ===");
+        for(int i = minionMonkeys.length - 1; i >= 0; i--) {
+            out.println(minionMonkeys[i] + " says: 'Wait, where are we going?'");
+        }
+        out.println();
+
+        // FOR-EACH loop
+        out.println("=== MONKEYS INTRODUCE THEMSELVES (For-Each) ===");
+        for(String monk : minionMonkeys) {
+            out.println(monk + " says: 'Ooh ooh ah ah!'");
+        }
+        out.println();
+
+        // MONKEY BRAIN CELL ANALYSIS
+        out.println("=== MONKEY INTELLIGENCE REPORT ===");
+        out.println("Smartest monkey has: " + max(brainCells) + " brain cells");
+        out.println("Dumbest monkey has: " + min(brainCells) + " brain cells");
+        out.println("Average monkey IQ: " + average(brainCells) + " brain cells\n");
+
+        // BANANA THEFT
+        int[] stolenBananas = {10, 67, 25, 67, 67, 30, 15};
+        out.println("=== BANANA THEFT INVESTIGATION ===");
+        out.println("Stolen banana amounts: " + Arrays.toString(stolenBananas));
+        out.println("Most common stolen amount: " + mode(stolenBananas));
+        out.println("How many times 67 was stolen: " + count(stolenBananas, 67) + "\n");
+
+        int[] monkeyAges = {1, 5, 12, 23, 34, 45, 56, 67, 78, 89};
+        out.println("=== FINDING THE 67-YEAR-OLD WISE MONKEY ===");
+        int location = linearSearch(monkeyAges, 67);
+        out.println("Linear Search found wise monkey at index: " + location);
+        location = binarySearch(monkeyAges, 67);
+        out.println("Binary Search found wise monkey at index: " + location + "\n");
+
+        int[] unsortedBananas = {67, 12, 45, 67, 3, 89, 67, 23};
+        out.println("=== BANANA PILE BEFORE SORTING ===");
+        out.println(Arrays.toString(unsortedBananas));
+        
+        int[] sortedBananas = bubbleSort(unsortedBananas);
+        out.println("=== BANANA PILE AFTER MONKEY SORTING ===");
+        out.println(Arrays.toString(sortedBananas));
+        out.println();
+
+        // REVERSE
+        out.println("=== MONKEYS WALKING BACKWARDS ===");
+        int[] forwardMonkeys = {1, 2, 3, 4, 5, 6, 7};
+        int[] backwardMonkeys = reverse(forwardMonkeys);
+        out.print("Forward: " + Arrays.toString(forwardMonkeys));
+        out.println(" → Backward: " + Arrays.toString(backwardMonkeys) + "\n");
+
+        // FIND ALL 67s
+        out.println("=== FINDING ALL INSTANCES OF THE SACRED 67 ===");
+        int[] mixedNumbers = {12, 67, 45, 67, 89, 23, 67, 67, 100};
+        int[] allSixtySevenIndices = findAll(mixedNumbers, 67);
+        out.println("Array: " + Arrays.toString(mixedNumbers));
+        out.println("67 appears at indices: " + Arrays.toString(allSixtySevenIndices) + "\n");
+
+        // SPLIT STRING
+        String monkeyStory = "The 67 monkeys ate 67 bananas in 67 seconds";
+        out.println("=== MONKEY STORY ANALYSIS ===");
+        out.println("Story: " + monkeyStory);
+        String[] words = monkeyStory.split(" ");
+        out.println("Word count: " + words.length);
+        out.println("Words: " + Arrays.toString(words) + "\n");
+
+        // REMOVE AT INDEX
+        out.println("=== MONKEY BANANA HEIST ===");
+        int[] bananas = {10, 20, 67, 30, 40};
+        out.println("Before heist: " + Arrays.toString(bananas));
+        bananas = removeAt(bananas, 2);
+        out.println("After monkey stole index 2: " + Arrays.toString(bananas) + "\n");
+
+        // MERGE
+        out.println("=== TWO MONKEY TRIBES MERGE ===");
+        int[] tribe1 = {10, 20, 67};
+        int[] tribe2 = {30, 67, 50};
+        int[] combinedTribes = merge(tribe1, tribe2);
+        out.println("Tribe 1: " + Arrays.toString(tribe1));
+        out.println("Tribe 2: " + Arrays.toString(tribe2));
+        out.println("Combined: " + Arrays.toString(combinedTribes) + "\n");
+
+        // DOUBLE
+        out.println("=== DOUBLE BANANA DAY ===");
+        int[] originalBananas = {1, 2, 67, 4, 5};
+        out.println("Before: " + Arrays.toString(originalBananas));
+        doubleAll(originalBananas);
+        out.println("After doubling: " + Arrays.toString(originalBananas) + "\n");
+
+        // FILTER
+        out.println("=== EXCLUSIVE MONKEY PARTY (67+ bananas only) ===");
+        int[] allMonkeyBananas = {12, 67, 89, 45, 67, 100, 23, 67};
+        int[] richMonkeys = filterGreaterThan(allMonkeyBananas, 66);
+        out.println("All monkeys: " + Arrays.toString(allMonkeyBananas));
+        out.println("Party guests: " + Arrays.toString(richMonkeys) + "\n");
+
+        // ROTATE
+        out.println("=== MONKEY MUSICAL CHAIRS (Rotate Right) ===");
+        int[] chairs = {1, 2, 3, 4, 5, 6, 7};
+        out.println("Before rotation: " + Arrays.toString(chairs));
+        int[] rotated = rotateRight(chairs, 2);
+        out.println("After 2 rotations: " + Arrays.toString(rotated) + "\n");
+
+        // PAIRS SUM
+        out.println("=== MONKEY PAIRS THAT MAKE 67 ===");
+        int[] monkeyNumbers = {10, 57, 20, 47, 30, 37, 15};
+        findPairSum(monkeyNumbers, 67);
+        out.println();
+
+        // SWAP
+        out.println("=== MONKEY POSITION SWAP ===");
+        int[] positions = {1, 2, 3, 4, 5};
+        out.println("Before swap: " + Arrays.toString(positions));
+        swap(positions, 1, 3);
+        out.println("After swapping index 1 and 3: " + Arrays.toString(positions) + "\n");
+
+        // PALINDROME
+        out.println("=== MONKEY PALINDROME CHECK ===");
+        int[] palindrome1 = {1, 2, 67, 2, 1};
+        int[] palindrome2 = {1, 2, 3, 4, 5};
+        out.println(Arrays.toString(palindrome1) + " is palindrome? " + isPalindrome(palindrome1));
+        out.println(Arrays.toString(palindrome2) + " is palindrome? " + isPalindrome(palindrome2) + "\n");
+
+        // SECOND LARGEST
+        out.println("=== SECOND PLACE MONKEY ===");
+        int[] scores = {45, 89, 67, 23, 100, 67};
+        out.println("Scores: " + Arrays.toString(scores));
+        out.println("Second largest: " + secondLargest(scores) + "\n");
+
+        // FREQUENCY MAP
+        out.println("=== BANANA FREQUENCY REPORT ===");
+        int[] inventory = {67, 12, 67, 45, 67, 12, 89};
+        frequencyCount(inventory);
+        out.println();
+
+        // CONSECUTIVE SUM
+        out.println("=== BEST 3-DAY BANANA GATHERING ===");
+        int[] dailyGathering = {10, 20, 67, 5, 15, 30};
+        int bestSum = maxConsecutiveSum(dailyGathering, 3);
+        out.println("Daily gathering: " + Arrays.toString(dailyGathering));
+        out.println("Best 3-day total: " + bestSum + "\n");
+
+        // DUPLICATES
+        out.println("=== FINDING DUPLICATE MONKEYS ===");
+        int[] monkeyIDs = {1, 2, 67, 4, 2, 67, 8};
+        out.println("Monkey IDs: " + Arrays.toString(monkeyIDs));
+        out.print("Duplicates found: ");
+        findDuplicates(monkeyIDs);
+        out.println("\n");
+
+        out.println("🍌🐒 END OF MONKEY ARRAY ACADEMY 🐒🍌");
+    }
+
+    // ==== METHODS ====
+
+    public static int max(int[] a) {
+        int max = a[0];
+        for(int i = 0; i < a.length; i++) {
+            if(max < a[i]) {
+                max = a[i];
+            }
+        }
+        return max;
+    }
+
+    public static int min(int[] a) {
+        int min = a[0];
+        for(int i = 0; i < a.length; i++) {
+            if(min > a[i]) {
+                min = a[i];
+            }
+        }
+        return min;
+    }
+
+    public static double average(int[] a) {
+        int sum = 0;
+        for(int i = 0; i < a.length; i++) {
+            sum += a[i];
+        }
+        return (double) sum / a.length;
+    }
+
+    public static int mode(int[] list) {
+        int[] temp = new int[list.length];
+        for(int i = 0; i < temp.length; i++)
+            temp[i] = list[i];
+        Arrays.sort(temp);
+        
+        int modeNum = temp[0], currentNum = temp[0];
+        int modeLength = 1, currentLength = 1;
+        
+        for(int i = 1; i < temp.length; i++) {
+            if(currentNum != temp[i]) {
+                if(currentLength > modeLength) {
+                    modeLength = currentLength;
+                    modeNum = currentNum;
+                }
+                currentLength = 1;
+                currentNum = temp[i];
+            } else {
+                currentLength++;
+            }
+        }
+        if(currentLength > modeLength)
+            modeNum = currentNum;
+        return modeNum;
+    }
+
+    public static int count(int[] a, int target) {
+        int count = 0;
+        for(int i = 0; i < a.length; i++) {
+            if(a[i] == target) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int linearSearch(int[] a, int target) {
+        for(int i = 0; i < a.length; i++) {
+            if(target == a[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int binarySearch(int[] a, int target) {
+        int left = 0;
+        int right = a.length - 1;
+        
+        while(left <= right) {
+            int middle = (left + right) / 2;
+            if(a[middle] == target)
+                return middle;
+            else if(a[middle] < target)
+                left = middle + 1;
+            else
+                right = middle - 1;
+        }
+        return -1;
+    }
+
+    public static int[] bubbleSort(int[] a) {
+        int[] sorted = new int[a.length];
+        for(int i = 0; i < a.length; i++) {
+            sorted[i] = a[i];
+        }
+        
+        for(int i = 0; i < sorted.length - 1; i++) {
+            for(int j = 0; j < sorted.length - 1 - i; j++) {
+                if(sorted[j] > sorted[j + 1]) {
+                    int temp = sorted[j];
+                    sorted[j] = sorted[j + 1];
+                    sorted[j + 1] = temp;
+                }
+            }
+        }
+        return sorted;
+    }
+
+    public static int[] reverse(int[] a) {
+        int[] reversed = new int[a.length];
+        for(int i = 0; i < a.length; i++) {
+            reversed[i] = a[a.length - 1 - i];
+        }
+        return reversed;
+    }
+
+    public static int[] findAll(int[] a, int target) {
+        int count = count(a, target);
+        
+        int[] indices = new int[count];
+        int index = 0;
+        
+        for(int i = 0; i < a.length; i++) {
+            if(a[i] == target) {
+                indices[index] = i;
+                index++;
+            }
+        }
+        return indices;
+    }
+
+    public static int[] removeAt(int[] a, int index) {
+        int[] newArray = new int[a.length - 1];
+        int newIndex = 0;
+        
+        for(int i = 0; i < a.length; i++) {
+            if(i != index) {
+                newArray[newIndex] = a[i];
+                newIndex++;
+            }
+        }
+        return newArray;
+    }
+
+    public static int[] merge(int[] a, int[] b) {
+        int[] merged = new int[a.length + b.length];
+        
+        for(int i = 0; i < a.length; i++) {
+            merged[i] = a[i];
+        }
+        
+        for(int i = 0; i < b.length; i++) {
+            merged[a.length + i] = b[i];
+        }
+        return merged;
+    }
+
+    public static void doubleAll(int[] a) {
+        for(int i = 0; i < a.length; i++) {
+            a[i] *= 2;
+        }
+    }
+
+    public static int[] filterGreaterThan(int[] a, int threshold) {
+        int count = 0;
+        for(int i = 0; i < a.length; i++) {
+            if(a[i] > threshold) {
+                count++;
+            }
+        }
+        
+        int[] filtered = new int[count];
+        int index = 0;
+        for(int i = 0; i < a.length; i++) {
+            if(a[i] > threshold) {
+                filtered[index] = a[i];
+                index++;
+            }
+        }
+        return filtered;
+    }
+
+    public static int[] rotateRight(int[] a, int k) {
+        int[] rotated = new int[a.length];
+        
+        for(int i = 0; i < a.length; i++) {
+            rotated[(i + k) % a.length] = a[i];
+        }
+        return rotated;
+    }
+
+    public static void findPairSum(int[] a, int target) {
+        out.println("Looking for pairs that sum to " + target + ":");
+        boolean found = false;
+        
+        for(int i = 0; i < a.length; i++) {
+            for(int j = i + 1; j < a.length; j++) {
+                if(a[i] + a[j] == target) {
+                    out.println("  " + a[i] + " + " + a[j] + " = " + target);
+                    found = true;
+                }
+            }
+        }
+        
+        if(!found) {
+            out.println("  No pairs found :(");
+        }
+    }
+
+    public static void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
+    public static boolean isPalindrome(int[] a) {
+        for(int i = 0; i < a.length / 2; i++) {
+            if(a[i] != a[a.length - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int secondLargest(int[] a) {
+        int max = Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
+        
+        for(int i = 0; i < a.length; i++) {
+            if(a[i] > max) {
+                secondMax = max;
+                max = a[i];
+            } else if(a[i] > secondMax && a[i] != max) {
+                secondMax = a[i];
+            }
+        }
+        return secondMax;
+    }
+
+    public static void frequencyCount(int[] a) {
+        int[] sorted = new int[a.length];
+        for(int i = 0; i < a.length; i++) {
+            sorted[i] = a[i];
+        }
+        Arrays.sort(sorted);
+        
+        out.println("Frequency report:");
+        int current = sorted[0];
+        int count = 1;
+        
+        for(int i = 1; i < sorted.length; i++) {
+            if(sorted[i] == current) {
+                count++;
+            } else {
+                out.println("  " + current + " appears " + count + " time(s)");
+                current = sorted[i];
+                count = 1;
+            }
+        }
+        out.println("  " + current + " appears " + count + " time(s)");
+    }
+
+    public static int maxConsecutiveSum(int[] a, int k) {
+        int maxSum = 0;
+        int currentSum = 0;
+        
+        for(int i = 0; i < k; i++) {
+            currentSum += a[i];
+        }
+        maxSum = currentSum;
+        
+        for(int i = k; i < a.length; i++) {
+            currentSum = currentSum - a[i - k] + a[i];
+            if(currentSum > maxSum) {
+                maxSum = currentSum;
+            }
+        }
+        return maxSum;
+    }
+
+    public static void findDuplicates(int[] a) {
+        boolean foundAny = false;
+        
+        for(int i = 0; i < a.length; i++) {
+            boolean alreadyReported = false;
+            for(int k = 0; k < i; k++) {
+                if(a[k] == a[i]) {
+                    alreadyReported = true;
+                    break;
+                }
+            }
+            
+            if(alreadyReported) continue;
+            
+            int count = 0;
+            for(int j = 0; j < a.length; j++) {
+                if(a[i] == a[j]) {
+                    count++;
+                }
+            }
+            
+            if(count > 1) {
+                out.print(a[i] + " ");
+                foundAny = true;
+            }
+        }
+        
+        if(!foundAny) {
+            out.print("None");
+        }
+    }
+}
