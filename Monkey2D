@@ -1,0 +1,337 @@
+import static java.lang.System.*;
+
+public class Monkey2D {
+    public static void main(String[] args) {
+
+        int[][] monkeys = {
+            {7, 3, 9, 1, 4},   // Kevin
+            {2, 8, 1, 6, 0},   // Stuart
+            {5, 5, 5, 5, 5},   // Bob
+            {9, 0, 4, 2, 1},   // Dave
+            {3, 9, 2, 8, 7},   // Carl
+            {6, 1, 6, 1, 6},   // Phil
+            {4, 4, 4, 9, 0}    // Tim
+        };
+
+        String[] names = {
+            "Kevin", "Stuart", "Bob", "Dave", "Carl", "Phil", "Tim"
+        };
+
+        out.println("===== MINION MONKEY GRID ONLINE =====");
+        out.println("Array dimensions: " + monkeys.length + " minions, " + monkeys[0].length + " banana metrics");
+        out.println("Total banana aura: " + total(monkeys));
+        out.println("Global minimum banana atom: " + min(monkeys));
+        out.println("Global maximum minion voltage: " + max(monkeys));
+        out.println("\n" + names[4] + " total banana exp: " + rowTotal(monkeys, 4));
+        out.println("Column 3 chaos sum: " + columnTotal(monkeys, 3));
+        out.println("\nAverage banana density: " + avg(monkeys));
+        out.println("Minion with the highest vibe: " + names[monkeyWithHighestRow(monkeys)]);
+        out.println("Column with peak instability: " + columnWithHighestSum(monkeys));
+        out.println("Minion with lowest vibe: " + names[monkeyWithLowestRow(monkeys)]);
+        out.println("\nEven/Odd banana count: " + evenOddCount(monkeys));
+        out.println("Diagonal banana sum: " + diagonalSum(monkeys));
+        out.println("Variance of banana chaos: " + variance(monkeys));
+        out.println("Count above 6 banana units: " + countAbove(monkeys, 6));
+        out.println("Coordinates of first '9': " + find(monkeys, 9));
+
+        out.println("\nMAP OF MINION REALM:\n" + map(monkeys));
+
+        out.println("Applying random mutation...");
+        mutate(monkeys);
+        out.println("Updated map:\n" + map(monkeys));
+
+        int[][] rotated = rotateClockwise(monkeys);
+        out.println("Clockwise-rotated minion grid:\n" + map(rotated));
+
+        out.println("\nRandom Minion Prophecy: " + prophecy());
+        out.println("Random Minion Activity: " + monkeyEvent(names));
+        out.println("Random Minion Achievement: " + achievement(names));
+
+        // NEW FEATURES — boss fight, inflation, NFTs, banana storm, lore
+        out.println("\n===== NEW FEATURES ENGAGED =====");
+
+        out.println("\n-- Boss Fight (simulated) --");
+        out.println(bossFight(monkeys, names));
+
+        out.println("\n-- Banana Economy Forecast --");
+        double currentAvg = avg(monkeys);
+        out.println(bananaInflationForecast(currentAvg, 0.12, 5)); // 12% inflation for 5 years
+
+        out.println("\n-- Minting some Minion NFTs --");
+        String[] nfts = mintMinionNFTs(names, 7);
+        for(String nft : nfts) out.println("  " + nft);
+
+        out.println("\n-- Procedural Banana Storm (intensity 4) --");
+        out.println("Before storm:\n" + map(monkeys));
+        bananaStorm(monkeys, 4);
+        out.println("After storm:\n" + map(monkeys));
+
+        out.println("\n-- Lore Compendium --");
+        String[] lore = loreEntries();
+        for(int i=0;i<lore.length;i++) out.println("  " + (i+1) + ". " + lore[i]);
+
+        out.println("\n===== SYSTEM UNSTABLE. BANANA OVERFLOW DETECTED. =====");
+    }
+
+    // ---------- core 2D tools ----------
+    public static int total(int[][] a) {
+        int t = 0;
+        for(int i=0;i<a.length;i++)
+            for(int j=0;j<a[i].length;j++)
+                t += a[i][j];
+        return t;
+    }
+
+    public static int rowTotal(int[][] a, int r) {
+        int t = 0;
+        for(int i=0;i<a[r].length;i++)
+            t += a[r][i];
+        return t;
+    }
+
+    public static int columnTotal(int[][] a, int c) {
+        int t = 0;
+        for(int i=0;i<a.length;i++)
+            t += a[i][c];
+        return t;
+    }
+
+    public static int min(int[][] a) {
+        int m = a[0][0];
+        for(int i=0;i<a.length;i++)
+            for(int j=0;j<a[i].length;j++)
+                if(a[i][j] < m)
+                    m = a[i][j];
+        return m;
+    }
+
+    public static int max(int[][] a) {
+        int m = a[0][0];
+        for(int i=0;i<a.length;i++)
+            for(int j=0;j<a[i].length;j++)
+                if(a[i][j] > m)
+                    m = a[i][j];
+        return m;
+    }
+
+    public static double avg(int[][] a) {
+        double total = total(a);
+        double count = a.length * a[0].length;
+        return total / count;
+    }
+
+    public static int monkeyWithHighestRow(int[][] a) {
+        int bestIndex = 0;
+        int best = rowTotal(a, 0);
+        for(int i=1;i<a.length;i++) {
+            int current = rowTotal(a, i);
+            if(current > best) {
+                best = current;
+                bestIndex = i;
+            }
+        }
+        return bestIndex;
+    }
+
+    public static int monkeyWithLowestRow(int[][] a) {
+        int index = 0;
+        int low = rowTotal(a, 0);
+        for(int i=1;i<a.length;i++) {
+            int t = rowTotal(a, i);
+            if(t < low) {
+                low = t;
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    public static int columnWithHighestSum(int[][] a) {
+        int bestIndex = 0;
+        int best = columnTotal(a, 0);
+        for(int i=1;i<a[0].length;i++) {
+            int current = columnTotal(a, i);
+            if(current > best) {
+                best = current;
+                bestIndex = i;
+            }
+        }
+        return bestIndex;
+    }
+
+    public static int countAbove(int[][] a, int x) {
+        int c = 0;
+        for(int i=0;i<a.length;i++)
+            for(int j=0;j<a[i].length;j++)
+                if(a[i][j] > x)
+                    c++;
+        return c;
+    }
+
+    public static String find(int[][] a, int target) {
+        for(int i=0;i<a.length;i++)
+            for(int j=0;j<a[i].length;j++)
+                if(a[i][j] == target)
+                    return "(" + i + "," + j + ")";
+        return "vanished into the banana realm";
+    }
+
+    public static String map(int[][] a) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<a.length;i++) {
+            for(int j=0;j<a[i].length;j++) {
+                sb.append(a[i][j]);
+                if(j < a[i].length - 1) sb.append(" ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    public static void reverseRows(int[][] a) {
+        for(int i=0;i<a.length;i++) {
+            for(int j=0;j<a[i].length/2;j++) {
+                int temp = a[i][j];
+                a[i][j] = a[i][a[i].length - j - 1];
+                a[i][a[i].length - j - 1] = temp;
+            }
+        }
+    }
+
+    public static int[][] rotateClockwise(int[][] a) {
+        int[][] r = new int[a[0].length][a.length];
+        for(int i=0;i<a.length;i++)
+            for(int j=0;j<a[i].length;j++)
+                r[j][a.length - i - 1] = a[i][j];
+        return r;
+    }
+
+    public static double variance(int[][] a) {
+        double avg = avg(a);
+        double sum = 0;
+        int count = a.length * a[0].length;
+        for(int i=0;i<a.length;i++)
+            for(int j=0;j<a[i].length;j++)
+                sum += Math.pow(a[i][j] - avg, 2);
+        return sum / count;
+    }
+
+    public static String evenOddCount(int[][] a) {
+        int even = 0, odd = 0;
+        for(int i=0;i<a.length;i++)
+            for(int j=0;j<a[i].length;j++)
+                if(a[i][j] % 2 == 0) even++; else odd++;
+        return even + " even, " + odd + " odd";
+    }
+
+    public static int diagonalSum(int[][] a) {
+        int m = Math.min(a.length, a[0].length);
+        int t = 0;
+        for(int i=0;i<m;i++) t += a[i][i];
+        return t;
+    }
+
+    public static void mutate(int[][] a) {
+        int r = (int)(Math.random() * a.length);
+        int c = (int)(Math.random() * a[0].length);
+        a[r][c] = (int)(Math.random() * 10);
+    }
+
+    // ---------- new fun features ----------
+
+    // Boss fight between two random minions. Uses row totals + randomness.
+    public static String bossFight(int[][] a, String[] names) {
+        int p1 = (int)(Math.random() * a.length);
+        int p2;
+        do { p2 = (int)(Math.random() * a.length); } while(p2 == p1);
+
+        int strength1 = rowTotal(a, p1) + (int)(Math.random() * 6);
+        int strength2 = rowTotal(a, p2) + (int)(Math.random() * 6);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(names[p1]).append(" (" + strength1 + ") vs ").append(names[p2]).append(" (" + strength2 + ")\n");
+        if(strength1 == strength2) {
+            sb.append("Epic tie! They both toss bananas and run a startup together.");
+        } else if(strength1 > strength2) {
+            sb.append(names[p1] + " wins, leaving " + names[p2] + " to rewrite their life in Python.");
+        } else {
+            sb.append(names[p2] + " wins, and " + names[p1] + " becomes an influencer.");
+        }
+        return sb.toString();
+    }
+
+    // Banana economy forecast: project average bananas with an annual inflation rate
+    public static String bananaInflationForecast(double avgNow, double annualInflationRate, int years) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Current average banana units: %.2f\n", avgNow));
+        double avg = avgNow;
+        for(int y=1;y<=years;y++) {
+            avg *= (1 + annualInflationRate);
+            sb.append(String.format(" Year %d projected avg: %.2f\n", y, avg));
+        }
+        sb.append(String.format("After %d years at %.2f%% annual inflation, projected avg bananas: %.2f",
+            years, annualInflationRate * 100, avg));
+        return sb.toString();
+    }
+
+    // Mint "Minion NFTs" — pseudo-random alphanumeric tokens per name
+    public static String[] mintMinionNFTs(String[] names, int count) {
+        String[] minted = new String[count];
+        for(int i=0;i<count && i<names.length;i++) {
+            String id = names[i] + "-" + Long.toHexString(Math.abs((long)(Math.random() * Long.MAX_VALUE))).toUpperCase();
+            minted[i] = names[i] + " NFT #" + (i+1) + " : " + id;
+        }
+        return minted;
+    }
+
+    // Procedural banana storm: randomly modifies multiple cells depending on intensity.
+    // intensity 1..10 roughly.
+    public static void bananaStorm(int[][] a, int intensity) {
+        int ops = Math.max(1, intensity * 3);
+        for(int k=0;k<ops;k++) {
+            int r = (int)(Math.random() * a.length);
+            int c = (int)(Math.random() * a[0].length);
+            int change = (int)((Math.random() * intensity) - (intensity/2.0)); // can be negative
+            a[r][c] = Math.max(0, a[r][c] + change);
+        }
+    }
+
+    // Lore entries — the storybook of the Minion Monkeys
+    public static String[] loreEntries() {
+        return new String[] {
+            "The First Peel: Kevin discovered that if you peel a banana slowly the world slows down with it.",
+            "The Great Uproar: Stuart once played a ukulele so loud servers rebooted across three timezones.",
+            "Bob's Kindness: Bob hugged a battery and the battery hugged back. Now the grid hums softly at night.",
+            "Dave and the Compiler: Dave wrote a single line of C++ that compiled on first try; a small hole opened in reality.",
+            "Carl's Speedrun: Carl peeled 100 bananas in under 60 seconds, unlocked a secret door to the pantry.",
+            "Phil's Pattern: Phil taught the colony to speak in alternating numbers; peace followed briefly.",
+            "Tim's Blockchain: Tim launched MinionCoin; it crashed, then became a rare collectible for bored raccoons."
+        };
+        
+    }
+    public static String prophecy() {
+        return 
+            "🍌 Monkey Prophecy Report 🍌\n" +
+            "A cosmic banana trembles in the void…\n" +
+            "Legend speaks of a Minion-Monkey chosen one who will\n" +
+            "yeet a sacred fruit across the 2D dimensions.\n";
+    }
+
+    public static String monkeyEvent(String[] troop) {
+        String out = "🔔 Monkey Event: Dimensional Chaos Detected 🔔\n";
+        for (int i = 0; i < troop.length; i++) {
+            out += "- " + troop[i] + " steals a banana at index " + i + "\n";
+        }
+        return out;
+    }
+
+    public static String achievement(String[] troop) {
+        String out = "🏆 Achievements Unlocked 🏆\n";
+        for (int i = 0; i < troop.length; i++) {
+            out += troop[i] + " achieved: 'Banana Master'\n";
+        }
+        return out;
+    }
+
+
+}
