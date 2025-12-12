@@ -1,0 +1,65 @@
+import static java.lang.System.*;
+import java.util.*;
+public class ArrayLists {
+	public static void main(String[] args) {
+		//array lists are just kewl arrays. thats really just it. They can grow or shrink with no size limit(I think...)
+		ArrayList<String> Monkeys = new ArrayList<String>();
+		Monkeys.add("1 Kevin");            //This  (Index 0)
+		Monkeys.add("3 Bob");              //Is    (Index 1)
+		Monkeys.add("2 Stuart");           //How   (Index 2)
+		Monkeys.add("5 Shreyas");          //You   (Index 3)
+		Monkeys.add("6 Firework Monkeys"); //Add   (Index 4)
+		Monkeys.add("4 Screaming Gibbon"); //Stuff (Index 5)
+		
+		//I put the numbers at the start just so you can see hoe .sort() works later
+		
+		//To find the length of this ArrayList, you don't use the .length method. You use .size() . 
+		
+		//You can also remove things. You need the specific index for this
+		Monkeys.remove(4);//This removes the Firework monkey. I do not condone animal abuse.
+
+		//Or add things with a specific index
+		Monkeys.add(4, "6 Mel");
+		
+		//To access an element in the array, all you need is the index
+		Monkeys.get(4);//This will give you Mel, but will not print it out
+
+		//To change values to another value, you need the index again
+		Monkeys.set(4, "6 Norbert");//He's an idiot(I'm so funny trust. everybody gets this reference)
+
+		//You can also clear the list by doing .clear(); but I wont do that. I like my monkeys.
+		//It is important to remember that ArrayLists keep things in the exact order you add them in unless you use the .sort() method
+		
+		//To use the .sort() method, you have to put it at the end (mind blown ik)
+		Collections.sort(Monkeys);//for Strings, then it will sort by Ascii value, but for numericals it will sort with ascending order
+		
+		//Time to loop through this thing. You have the for each loop and the normal one. The F.E one actually makes sense since you don't need 2 like for 2D arrays
+		
+		//For-Each
+		out.println("This is a for each: ");
+		for(String k:Monkeys) {
+			out.println(k);
+		}
+		out.println();
+		
+		//Normal for loop
+		out.println("This is a normal for loop: ");
+		for(int i = 0; i<Monkeys.size(); i++) {
+			out.println(Monkeys.get(i));
+		}
+		out.println();
+		
+		
+		
+		//There are also 2 other ways to write these things. I don't exactly know the pros and the cons, but here they are: 
+		
+		//You can use List. This one has pros apparently, but idk man
+		List <Integer> Braincells= new ArrayList();//Oh yeah, it is also important that you use the wrapper class versions or it wont compile and you will blow up
+		
+		//There is also Var. I am getting javascript nightmares
+		var debt = new ArrayList();//for this, you dont have to define what it is. the only good thing about javascript lol
+		
+		//summary paragraph yippee(imma start this, it is a gud idea)
+		out.println("An ArrayList is just a cool array that can be modified.\nIt can grow, shrink, clear itself and use the for each loop without making you combust.\nYou use .get() to get a vaule, .set() to set a value, .size() for the length, and .add() or .remove to add and remove from this thing");
+	}
+}
