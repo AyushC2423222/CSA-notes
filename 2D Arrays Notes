@@ -10,7 +10,7 @@ public class Arrays_2D {
 	private String skibType;
 	private Arrays_2D[] skibs;
 	public Arrays_2D(Arrays_2D[] skibys) {
-		//skibs = skibys; AP PENALITY POINT = - 1 
+		//skibys = skibs; AP PENALITY POINT = - 1 
 		// LOOP THROUGH THE Source array and put the contents in the instance array
 		skibs = new Arrays_2D[skibys.length];//this part is important. IDK why
 		for(int i = 0; i<skibys.length; i++) {
@@ -55,8 +55,10 @@ public class Arrays_2D {
 		}
 		return printSkibs;
 	}
-	
+
 	public static void main(String[] args) {
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		Arrays_2D skib1 = new Arrays_2D(1, true, "Fast Skibidi");
 		Arrays_2D skib2 = new Arrays_2D(2, true, "G-Man Skibidi");
@@ -75,16 +77,38 @@ public class Arrays_2D {
 			}
 		}
 		out.println();
-		out.println("The Boys are: ");
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		char[][] alphaBits = new char[13][2];//This is the proper way to Write it. 13 is the number of rows, while 2 is columns
 
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		out.println("The Boys are: ");
 		//This is a 2d array of the boys names. It has rows and columns
 		String[][] theBoys = {{"Eric", "Kenny"},   //row 0
 							  {"Stan", "Kyle"},    //row 1
 							  {"Butters", "Tweek"},//Row 2 
-			                  {"Timmy", "Jimmy"}}; //Row 3
-								//Col 0   Col 1
+							  {"Timmy", "Jimmy"}}; //Row 3
+				  				//Col 0   Col 1
+		//To loop through these bad boys, you need 2 for loops(i can see the aghast expression on ur face but it will be ok)
+		for(int rows = 0; rows<theBoys.length;/*The length of the boys is the amount of rows*/rows++) {
+			for(int columns = 0; columns<theBoys[rows].length;/*this measures the length of each array in the array*/ columns++) {
+
+				/*
+				  To explain this collossus, you need to imagine an array. a 2d array is an array of arrays
+				  when you get the length of the array(theBoys.length), you are finding the length of the main array
+				  when you do theBoys[0].length, you are finding the length of the 0th index
+				 */
+
+				out.print(theBoys[rows][columns]+" and ");//you are index of the element in that row and that column in the nested loop
+
+			}
+			out.println();
+		}
+		out.println("Token.\n\n\n");
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//This is a ragged array. It is ragged(i know right) and it is wierd cuz it is uneven
 		int[][] strangeThings = {{1, 2, 3, 4, 5, 6, 7, 8},   //Episodes in season 1
@@ -93,22 +117,64 @@ public class Arrays_2D {
 				{1, 2, 3, 4, 5, 6, 7, 8, 9},//Episodes in season 4
 				{1, 2, 3, 4}};              //Episodes in season 5
 
-		//To loop through these bad boys, you need 2 for loops(i can see the aghast expression on ur face but it will be ok)
-		for(int rows = 0; rows<theBoys.length;/*The length of the boys is the amount of rows*/rows++) {
-			for(int columns = 0; columns<theBoys[rows].length;/*this measures the length of each array in the array*/ columns++) {
-				
-				/*
-				  To explain this collossus, you need to imagine an array. a 2d array is an array of arrays
-				  when you get the length of the array(theBoys.length), you are finding the length of the main array
-				  when you do theBoys[0].length, you are finding the length of the 0th index
-				*/
-				
-				out.print(theBoys[rows][columns]+" and ");//you are index of the element in that row and that column in the nested loop
-				
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		int[][] test = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+		int[][] results = rowsColumnsFlip(test);
+		for(int i = 0; i<results.length; i++) {
+			for(int j = 0; j<results[i].length; j++) {
+				out.print(results[i][j]+" ");
 			}
 			out.println();
 		}
-		out.println("Token.");
 	}
+	//COMMON BULLSHIT THEY MAKE U WRITE
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public static int totalSum(int[][] a) {//They make you find the total sum of everything in here
+		int total = 0;
+		for(int i = 0; i<a.length; i++) {
+			for(int j = 0; j<a[i].length; j++) {
+				total+=a[i][j];//I don't know if i mentioned this but this is how to access an element in these things
+			}
+		}
+		return total;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public static int[][] rowsColumnsFlip(int[][] a) {//They make you find the sum of the left diagonal (0,0), (1,1), (2,2)...
+		int[][] b = new int[a.length][a[0].length];
+		for(int i = 0; i<a.length; i++) {
+			for(int j = 0; j<a[i].length; j++) {
+				b[i][j] = a[j][i];
+			}
+		}
+		return b;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public static int leftDiagSum(int[][] a){
+		int total = 0;
+		for(int i = 0; i<a.length; i++) {
+			total+=a[i][i];
+		}
+		return total;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public static int rightDiagSum(int[][] a) {
+		int total = 0;
+		for(int i = 0; i<a.length; i++) {
+			int j = a.length-1-i;//according to google this works
+			total+=a[i][j];
+		}
+		return total;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
