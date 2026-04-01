@@ -1,6 +1,5 @@
 import static java.lang.System.*;
 import java.util.*;
-
 //PEAK LORE BEFORE THE ACTUAL CODE
 //AT 1 POINT I WATCHED AN ANIME CALLED KENGAN ASHURA 
 //IT WAS GOOD ABOUT WRESTLING, I THINK YOU WILL LIKE IT
@@ -8,8 +7,7 @@ import java.util.*;
 //BUT IT IS THE VILLIAN, NOT REALLY THE HERO
 //THIS MAN IS A BEAST, AND I MADE MY COED TO MATCH DA REAL RANDOMNESS OF HIS FIGHTING
 //AND ALSO JUST FOR UN LOL :)
-//FUN LABBOR 
-
+//FUN LABB
 public class Prisonerk1630454 extends Prisoner {
     private boolean myLastChoice = false;
     private int oppDef = 0;
@@ -18,33 +16,17 @@ public class Prisonerk1630454 extends Prisoner {
     //i can also make it -1 and add 1 at first. idk y im thinking that but im low on caffeine and my contacts hurt
     private int streak = 0;
     private String opponentType = "unknown";
-    //      coCo = coDe =deCo = deDe = 0;//set all these bad bois to 0
-
     Prisonerk1630454(){
         super("k1630454");
     }
-
-//  public String getStats() {
-//      int[][] a = new int[2][2];
-//      //00 is coCo, 10 is deCo, 01 is coDe, 11 is deDe
-//      a[0][0] = coCo;
-//      a[1][0] = deCo;
-//      a[0][1] = coDe;
-//      a[1][1] = deDe;
-//      String base = "both coop "+a[0][0]+"times, u def he coop "+a[1][0]+" times, u coop he def"+a[0][1]+" times, both def "+a[1][1]+"times";
-//      return base;
-//  }
-
     @Override
     public void addYears(int x) {
         super.addYears(x);
-        // idk how to get the year tracker thing besides adding more counters witch i dont wanna do
-        // the reson is so i can act see wut be going on and calc the years properly
         boolean oppDefected;
-        if (myLastChoice) {         // i defected
-            oppDefected = (x == 2); // both defected = 2 years
-        } else {                    // i cooperated
-            oppDefected = (x == 3); // they defected on me = 3 years
+        if (myLastChoice) {
+            oppDefected = (x == 2); 
+        } else {
+            oppDefected = (x == 3);
         }
         if (oppDefected) {
             oppDef++;
@@ -93,7 +75,7 @@ public class Prisonerk1630454 extends Prisoner {
         if (decision == myLastChoice) {
             streak++;
             if (streak >= 3) {
-                decision = !decision; // switch it up if we been picking the same thing too much
+                decision = !decision;
                 streak = 0;
             }
         } else {
